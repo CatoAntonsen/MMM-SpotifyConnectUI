@@ -1,7 +1,7 @@
 # MagicMirror Module: MMM-SpotifyConnectWeb
 The 'MMM-SpotifyConnectWeb' module is for displaying cover, artist and track-information from a version of a Spotify Connect client for made available by Fornoth on GitHub: https://github.com/Fornoth/spotify-connect-web. 
 
-![Screenshot of the module](example.png "Screenshot of the module #2")
+![Screenshot of the module](https://github.com/CatoAntonsen/MMM-SpotifyConnectWebUI/blob/master/Example1.png "Screenshot of the module #2")
 
 The current version of this module is by far finished, just the first working proof-of-concept. 
 
