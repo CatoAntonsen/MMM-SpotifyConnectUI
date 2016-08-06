@@ -1,7 +1,7 @@
 'use strict';
 
 /* Magic Mirror
- * Module: SpotifyConnectWebUI
+ * Module: SpotifyConnectUI
  *
  * By Cato Antonsen
  * MIT Licensed.
@@ -48,7 +48,7 @@ module.exports = NodeHelper.create({
 		var req = http.get(options, function(res) {
 			data.cover_uri = res.headers["location"];
 			this.lastTrack_uri = data.track_uri;
-			self.sendSocketNotification("SpotifyConnectWebUI", data);
+			self.sendSocketNotification("SpotifyConnectUI", data);
 		});
 	},
 

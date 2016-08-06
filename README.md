@@ -1,7 +1,7 @@
-# MagicMirror Module: MMM-SpotifyConnectWeb
-The 'MMM-SpotifyConnectWeb' module is for displaying cover, artist and track-information from a version of a Spotify Connect client for made available by Fornoth on GitHub: https://github.com/Fornoth/spotify-connect-web. 
+# MagicMirror Module: MMM-SpotifyConnectUI
+The 'MMM-SpotifyConnectUI' module is for displaying cover, artist and track-information from a version of a Spotify Connect client for made available by Fornoth on GitHub: https://github.com/Fornoth/spotify-connect-web. 
 
-![Screenshot of the module](https://github.com/CatoAntonsen/MMM-SpotifyConnectWebUI/blob/master/Example1.png "Screenshot of the module #2")
+![Screenshot of the module](https://github.com/CatoAntonsen/MMM-SpotifyConnectUI/blob/master/Example1.png "Screenshot of the module #2")
 
 The current version of this module is by far finished, just the first working proof-of-concept. 
 
@@ -40,7 +40,7 @@ In your terminal, go to your MagicMirror's Module folder:
 
 Clone this repository:
 
-    git clone https://github.com/CatoAntonsen/MMM-SpotifyConnectWebUI.git
+    git clone https://github.com/CatoAntonsen/MMM-SpotifyConnectUI.git
 
 Configure the module in your config.js file.
 ## Using the module
@@ -48,7 +48,7 @@ To use this module, add it to the modules array in the `config/config.js` file:
 
     modules: [
     	{
-    		module: 'MMM-SpotifyConnectWebUI',
+    		module: 'MMM-SpotifyConnectUI',
     		position: 'bottom_right',
     		config: {
     			// These are probably no sence changing yourself:
