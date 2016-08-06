@@ -15,6 +15,8 @@ Module.register("MMM-SpotifyConnectUI",{
 		Host: "localhost",
 		Port: 4000,
 		MetadataApi: "/api/info/metadata",
+		StatusApi: "/api/info/status",
+		RemoteName: "/api/info/display_name",
 		ImageUrlApi: "/api/info/image_url/"
 	},
 
@@ -29,23 +31,34 @@ Module.register("MMM-SpotifyConnectUI",{
 		wrapper.className = "align-right thin bright";
 
 		if (this.spotifyData != null) {
-			var img = document.createElement("img");
-			img.setAttribute("src", this.spotifyData.cover_uri);
-			
-			var track = document.createElement("div");
-			track.className = "bold";
-			var trackName = document.createTextNode(this.spotifyData.track_name);
-			track.appendChild(trackName);
-			
-			var artist = document.createElement("div");
-			var artistName = document.createTextNode(this.spotifyData.artist_name);
-			artist.appendChild(artistName);
-			
-			wrapper.appendChild(img);
-			wrapper.appendChild(track);
-			wrapper.appendChild(artist);
-		}
-
+			if (this.spotifyData.status.active) {
+				if (this.spotifyData.status.playing) {
+					var img = document.createElement("img");
+					img.setAttribute("src", this.spotifyData.meta.cover_uri);
+					
+					var track = document.createElement("div");
+					track.className = "bold";
+					var trackName = document.createTextNode(this.spotifyData.meta.track_name);
+					track.appendChild(trackName);
+					
+					var artist = document.createElement("div");
+					var artistName = document.createTextNode(this.spotifyData.meta.artist_name);
+					artist.appendChild(artistName);
+					
+					wrapper.appendChild(img);
+					wrapper.appendChild(track);
+					wrapper.appendChild(artist);
+				} else {
+					var message = document.createTextNode("PAUSED");
+					wrapper.appendChild(message);
+				}
+			} 
+			else {
+				var message = document.createTextNode("Connect Spotify to " + this.spotifyData.remoteName);
+				wrapper.appendChild(message);
+			}
+		} 
+		
 		return wrapper;
 	},
 	
