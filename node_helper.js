@@ -12,7 +12,6 @@ var http = require('http');
 
 module.exports = NodeHelper.create({
     start: function () {
-		var self = this;
         this.started = false;
         this.config = null;
 		this.lastTrack_uri = null;
