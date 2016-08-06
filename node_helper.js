@@ -17,38 +17,27 @@ module.exports = NodeHelper.create({
 		this.lastTrack_uri = null;
     },
 
-    getSpotifyMetadata: function(delay) {
+    getSpotifyMetadata: function() {
 		var self = this;
 
-		var reloadTimer = null;
-		
-		var spotifyFetcher = function() {
-			var url = self.config.Protocol + "://" + self.config.Host + ":" + self.config.Port + self.config.MetadataApi;
+		var url = self.config.Protocol + "://" + self.config.Host + ":" + self.config.Port + self.config.MetadataApi;
 
-			http.get(url, function(res){
-				var body = '';
+		http.get(url, function(res){
+			var body = '';
 
-				res.on('data', function(chunk){
-					body += chunk;
-				});
-
-				res.on('end', function(){
-					var data = JSON.parse(body);
-					if (data.track_uri != self.lastTrack_uri) {
-						self.refreshSpotifyData(data);
-					}
-				});
-			}).on('error', function(e){
-				  console.log("Got an error: ", e);
+			res.on('data', function(chunk){
+				body += chunk;
 			});
-			
-			clearTimeout(reloadTimer);
-			reloadTimer = setTimeout(function() {
-				spotifyFetcher();
-			}, delay);
-		}
-		
-		spotifyFetcher();
+
+			res.on('end', function(){
+				var data = JSON.parse(body);
+				if (data.track_uri != self.lastTrack_uri) {
+					self.refreshSpotifyData(data);
+				}
+			});
+		}).on('error', function(e){
+				console.log("Got an error: ", e);
+		});
 	},
 
 	refreshSpotifyData: function(data) {
@@ -62,7 +51,7 @@ module.exports = NodeHelper.create({
 			self.sendSocketNotification("SpotifyConnectWebUI", data);
 		});
 	},
-	
+
     socketNotificationReceived: function (notification, payload) {
 		var self = this;
         console.log("[" + this.name + "] Notification received: " + notification);
@@ -70,7 +59,9 @@ module.exports = NodeHelper.create({
             this.config = payload;
             this.started = true;
 
-			self.getSpotifyMetadata(2500);
+			setInterval(function() {
+				self.getSpotifyMetadata();
+			}, 2500);
 		}
     }
 });
