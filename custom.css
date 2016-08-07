@@ -1,0 +1,45 @@
+/*.MMM-SpotifyConnectUI { */
+.spotifyWrapper {
+	position: absolute;
+	width: 160px;
+	bottom: 0;
+	left: 0;
+	margin-left: 60px;
+	margin-right: 60px;
+	overflow: hidden;
+	display:inline-block;
+	text-overflow: ellipsis; 
+	white-space: nowrap;
+	padding-bottom: 60px;
+}
+
+.spotifyImageWrapper {
+  height: 160px;
+  width: 160px;
+  position: relative;
+}
+
+.floating { 
+  z-index: 100;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.spotifyMissingConnectionImage {
+  position: relative;
+}
+
+.spotifyMissingConnectionMessage {
+  position: absolute;
+  text-align: center;
+  left: 0;
+  top: 120px;
+  width: 100%
+}
+
+.newsfeed {
+    float: left;
+    width: 60%;
+    margin-left: 20%;
+}
