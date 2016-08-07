@@ -11,20 +11,27 @@ var NodeHelper = require('node_helper');
 var http = require('http');
 
 module.exports = NodeHelper.create({
+	log: function(message) {
+		console.log("[" + this.name + "] " + message);
+	},
+
+	error: function(message) {
+		console.log("[" + this.name + "] " + message);
+	},
+	
     start: function () {
         this.started = false;
         this.config = null;
 		this.spotifyData = null;
-		this.spotifyRemoteName = null;
     },
 
 	socketNotificationReceived: function (notification, payload) {
 		var self = this;
-        console.log("[" + self.name + "] Notification received: " + notification);
-        if (notification === 'CONFIG' && this.started === false) {
+        self.log("Notification received: " + notification);
+        if (notification === 'CONFIG') {
             this.config = payload;
             this.started = true;
-
+			this.spotifyData = null;
 			self.startSpotifyPolling();
 		}
     },
@@ -35,19 +42,17 @@ module.exports = NodeHelper.create({
 		// Get name of Spotify Connect
 		self.getJson(self.config.Protocol + "://" + self.config.Host + ":" + self.config.Port + self.config.RemoteName)
 			.then(function(data) {
-				self.spotifyRemoteName = data.remoteName;
-				console.log("[" + self.name + "] Remote name is " + self.spotifyRemoteName);
+				self.log("Spotify Connect broadcasted as " + data.remoteName);
 				
-				// Loop for getting data from Spotify Connect
 				setInterval(function() {
-					self.getSpotifyData();
+					self.getSpotifyData(data.remoteName);
 				}, 2500);
-
+				
 			})
-			.catch((err) => console.error("[" + self.name + "] " + err));
+			.catch((err) => self.error(err));
 	},
 	
-    getSpotifyData: function() {
+    getSpotifyData: function(remoteName) {
 		var self = this;
 
 		self.getJson(self.config.Protocol + "://" + self.config.Host + ":" + self.config.Port + self.config.StatusApi)
@@ -55,7 +60,7 @@ module.exports = NodeHelper.create({
 				if (statusData.active) {
 					self.getJson(self.config.Protocol + "://" + self.config.Host + ":" + self.config.Port + self.config.MetadataApi)
 						.then(function(metaData) {
-							var currentSpotifyData = { remoteName: self.spotifyRemoteName, status: statusData, meta: metaData };
+							var currentSpotifyData = { remoteName: remoteName, status: statusData, meta: metaData };
 							
 							if (self.spotifyData == null ||
 								currentSpotifyData.status.active != self.spotifyData.status.active ||
@@ -66,9 +71,9 @@ module.exports = NodeHelper.create({
 								self.refreshSpotifyData(currentSpotifyData);
 							}
 						})
-						.catch((err) => console.error("[" + self.name + "] " + err));
+						.catch((err) => self.error(err));
 				} else {
-					var currentSpotifyData = { remoteName: self.spotifyRemoteName, status: statusData};
+					var currentSpotifyData = { remoteName: remoteName, status: statusData};
 					
 					if (self.spotifyData == null ||
 						currentSpotifyData.status.active != self.spotifyData.status.active ||
@@ -79,7 +84,7 @@ module.exports = NodeHelper.create({
 					}
 				}
 			})
-			.catch((err) => console.error("[" + self.name + "] " + err));
+			.catch((err) => self.error(err));
 	},
 
 	refreshSpotifyData: function(data) {

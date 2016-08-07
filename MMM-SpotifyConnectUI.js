@@ -28,7 +28,7 @@ Module.register("MMM-SpotifyConnectUI",{
 
 	getDom: function() {
 		var wrapper = document.createElement("div");
-		wrapper.className = "align-right thin bright";
+		wrapper.className = "spotifyConnectWrapper small"; // align-right thin bright
 
 		if (this.spotifyData != null) {
 			if (this.spotifyData.status.active) {
@@ -37,11 +37,12 @@ Module.register("MMM-SpotifyConnectUI",{
 					img.setAttribute("src", this.spotifyData.meta.cover_uri);
 					
 					var track = document.createElement("div");
-					track.className = "bold";
+					track.className = "title bright";
 					var trackName = document.createTextNode(this.spotifyData.meta.track_name);
 					track.appendChild(trackName);
 					
 					var artist = document.createElement("div");
+					artist.className = "time light";
 					var artistName = document.createTextNode(this.spotifyData.meta.artist_name);
 					artist.appendChild(artistName);
 					
@@ -62,10 +63,16 @@ Module.register("MMM-SpotifyConnectUI",{
 		return wrapper;
 	},
 	
+	getStyles: function() {
+		return [
+			'custom.css'
+		]
+	},
+	
 	socketNotificationReceived: function(notification, payload) {
 		if (notification === "SpotifyConnectUI"){
 			this.spotifyData = payload;
-			this.updateDom();
+			this.updateDom(2000);
 		}
 	}
 });
