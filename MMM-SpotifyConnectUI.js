@@ -28,34 +28,64 @@ Module.register("MMM-SpotifyConnectUI",{
 
 	getDom: function() {
 		var wrapper = document.createElement("div");
-		wrapper.className = "spotifyConnectWrapper small"; // align-right thin bright
+		wrapper.className = "spotifyWrapper small"; // align-right thin bright
 
 		if (this.spotifyData != null) {
 			if (this.spotifyData.status.active) {
+				// Image wrapper
+				var imgWrapper = document.createElement("div");
+				imgWrapper.className = "spotifyImageWrapper";
+
+				// Cover image
+				var coverImg = document.createElement("img");
+				coverImg.setAttribute("src", this.spotifyData.meta.cover_uri);
+
+				// Show pause-button?
 				if (this.spotifyData.status.playing) {
-					var img = document.createElement("img");
-					img.setAttribute("src", this.spotifyData.meta.cover_uri);
-					
-					var track = document.createElement("div");
-					track.className = "title bright";
-					var trackName = document.createTextNode(this.spotifyData.meta.track_name);
-					track.appendChild(trackName);
-					
-					var artist = document.createElement("div");
-					artist.className = "time light";
-					var artistName = document.createTextNode(this.spotifyData.meta.artist_name);
-					artist.appendChild(artistName);
-					
-					wrapper.appendChild(img);
-					wrapper.appendChild(track);
-					wrapper.appendChild(artist);
+					imgWrapper.appendChild(coverImg);
 				} else {
-					var message = document.createTextNode("PAUSED");
-					wrapper.appendChild(message);
+					coverImg.style.opacity = "0.25";
+					imgWrapper.appendChild(coverImg);
+
+					var pauseImg = document.createElement("img");
+					pauseImg.src = this.file("images/music-pause-button-pair-of-lines.png");
+					pauseImg.className = "floating";
+					imgWrapper.appendChild(pauseImg);
 				}
+
+				// Track name
+				var track = document.createElement("div");
+				track.className = "title bright";
+				var trackName = document.createTextNode(this.spotifyData.meta.track_name);
+				track.appendChild(trackName);
+				
+				// Artist name
+				var artist = document.createElement("div");
+				artist.className = "time light";
+				var artistName = document.createTextNode(this.spotifyData.meta.artist_name);
+				artist.appendChild(artistName);
+				
+				// Add elements
+				wrapper.appendChild(imgWrapper);
+				wrapper.appendChild(track);
+				wrapper.appendChild(artist);
 			} 
 			else {
-				var message = document.createTextNode("Connect Spotify to " + this.spotifyData.remoteName);
+				// Image
+				var connectImg = document.createElement("img");
+				connectImg.src = this.file("images/Spotify_Icon_RGB_Black.png");
+				connectImg.className = "spotifyMissingConnectionImage";
+
+				// Message
+				var message = document.createElement("div");
+				message.className = "spotifyMissingConnectionMessage floating light xsmall dimmed";
+
+				var remoteName = document.createTextNode(this.spotifyData.remoteName);
+				remoteName.className = " ";
+				message.appendChild(remoteName);
+
+				// Add elements
+				wrapper.appendChild(connectImg);
 				wrapper.appendChild(message);
 			}
 		} 

@@ -1,11 +1,11 @@
 # MagicMirror Module: MMM-SpotifyConnectUI
-The 'MMM-SpotifyConnectUI' module is for displaying cover, artist and track-information from a version of a Spotify Connect client for made available by Fornoth on GitHub: https://github.com/Fornoth/spotify-connect-web. 
+The 'MMM-SpotifyConnectUI' module is for displaying information from Spotify Connect (running on the RPi) via [spotify-connect-web](https://github.com/Fornoth/spotify-connect-web (prerequisite which have to be installed seperately). The module provides no interaction other than showing if connected, what song is playing or if paused. You have to start and interact using Spotify on PC or mobile.
 
-![Screenshot of the module](Example1.png "Screenshot of the module #2")
+![Screenshot of the module](Example.png "Screenshot of the module")
 
-The current version of this module is by far finished, just the first working proof-of-concept. 
+Current version is 1.0.0. See [changelog](CHANGELOG.md "Version history") for version history.
 
-## Prerequisites: Spotify-Connect-Web
+## Prerequisites
 You need to have Spotify-Connect-Web installed and a **Spotify Premium subscription** for this module to work.
 
 Detailed instructions you find [here](https://github.com/Fornoth/spotify-connect-web/blob/0.0.3-alpha/README.md). Notice, he still refers to a 0.02-alpha version in the documentation, but there is a new 0.0.3-version out that I've been using.
@@ -51,12 +51,8 @@ To use this module, add it to the modules array in the `config/config.js` file:
     		module: 'MMM-SpotifyConnectUI',
     		position: 'bottom_right',
     		config: {
-    			// These are probably no sence changing yourself:
-    			Protocol: "http",
-    			Host: "localhost",
-    			Port: 4000,
-    			MetadataApi: "/api/info/metadata",
-    			ImageUrlApi: "/api/info/image_url/"
+    			// No further configuration needed unless you run another version of spotify-connect-web on another box.
+				// See MMM-SpotifyConnectUI.js for these settings.
     		}
     	}
     ]
@@ -64,7 +60,6 @@ To use this module, add it to the modules array in the `config/config.js` file:
 ## Configuration options
 
 The following properties can be configured:
-
 
 <table width="100%">
 	<!-- why, markdown... -->
@@ -94,9 +89,21 @@ The following properties can be configured:
 			</td>
 		</tr>
 		<tr>
+			<td><code>RemoteName</code></td>
+			<td>What API SCW uses for getting the name this unit will broadcast itself as.<br>
+				<br><b>Default value:</b> <code>'/api/info/display_name'</code>
+			</td>
+		</tr>
+		<tr>
 			<td><code>MetadataApi</code></td>
 			<td>What API SCW uses for getting metadata of current playing song.<br>
 				<br><b>Default value:</b> <code>'/api/info/metadata'</code>
+			</td>
+		</tr>
+		<tr>
+			<td><code>StatusApi</code></td>
+			<td>What API SCW uses for getting status of the Spotify Connection state.<br>
+				<br><b>Default value:</b> <code>'/api/info/status'</code>
 			</td>
 		</tr>
 		<tr>
@@ -108,10 +115,7 @@ The following properties can be configured:
 		
 	</tbody>
 </table>
-##Future enhancements
-
- - Use API to check status of Spotify Connect (active?)
- - Add custom CSS to move the module to one of the (bottom) corners
- - More configuration options on what information you want to show and how
- - Find a better solution than polling the Spotify Connect webservice constantely
-
+## Credits
+- Fornoth for making [spotify-connect-web](https://github.com/Fornoth/spotify-connect-web "Link to spotify-connect-web on GitHub") that this module relies on  
+- Spotify icon by Spotify
+- Pause Icon made by [Freepik](http://www.flaticon.com/authors/freepik) from www.flaticon.com 

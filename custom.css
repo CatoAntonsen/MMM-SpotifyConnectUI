@@ -1,7 +1,7 @@
 /*.MMM-SpotifyConnectUI { */
-.spotifyConnectWrapper {
+.spotifyWrapper {
 	position: absolute;
-	width: 400px;
+	width: 160px;
 	bottom: 0;
 	left: 0;
 	margin-left: 60px;
@@ -13,26 +13,33 @@
 	padding-bottom: 60px;
 }
 
+.spotifyImageWrapper {
+  height: 160px;
+  width: 160px;
+  position: relative;
+}
+
+.floating { 
+  z-index: 100;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.spotifyMissingConnectionImage {
+  position: relative;
+}
+
+.spotifyMissingConnectionMessage {
+  position: absolute;
+  text-align: center;
+  left: 0;
+  top: 120px;
+  width: 100%
+}
+
 .newsfeed {
     float: left;
     width: 60%;
     margin-left: 20%;
 }
-
-/*
-body {
-  margin: 30px;
-  height: calc(100% - 150px);
-  width: calc(100% - 150px);
-}
-
-.region.fullscreen {
-  position: absolute;
-  top: -30px;
-  left: -30px;
-  right: -30px;
-  bottom: -30px;
-}
-
-
-*/
