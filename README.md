@@ -1,5 +1,5 @@
 # MagicMirror Module: MMM-SpotifyConnectUI
-The 'MMM-SpotifyConnectUI' module is for displaying information from Spotify Connect (running on the RPi) via [spotify-connect-web](https://github.com/Fornoth/spotify-connect-web (prerequisite which have to be installed seperately). The module provides no interaction other than showing if connected, what song is playing or if paused. You have to start and interact using Spotify on PC or mobile.
+The 'MMM-SpotifyConnectUI' module is for displaying information from Spotify Connect (running on the RPi) via [spotify-connect-web](https://github.com/Fornoth/spotify-connect-web) (prerequisite which have to be installed seperately). The module provides no interaction other than showing if connected, what song is playing or if paused. You have to start and interact using Spotify on PC or mobile.
 
 ![Screenshot of the module](images/Example.png "Screenshot of the module")
 
