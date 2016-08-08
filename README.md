@@ -3,44 +3,44 @@ The 'MMM-SpotifyConnectUI' module is for displaying information from Spotify Con
 
 ![Screenshot of the module](images/Example.png "Screenshot of the module")
 
-Current version is 1.0.0. See [changelog](CHANGELOG.md "Version history") for version history.
+Current version is 1.0.1. See [changelog](CHANGELOG.md "Version history") for version history.
 
 ## Prerequisites
 You need to have Spotify-Connect-Web installed and a **Spotify Premium subscription** for this module to work.
 
-Detailed instructions you find [here](https://github.com/Fornoth/spotify-connect-web/blob/0.0.3-alpha/README.md). Notice, he still refers to a 0.02-alpha version in the documentation, but there is a new 0.0.3-version out that I've been using.
+Detailed instructions you find [here](https://github.com/Fornoth/spotify-connect-web/blob/0.0.3-alpha/README.md). Notice, he still refers to a 0.0.2-alpha version in the documentation, but there is a new 0.0.3-version out that I've been using.
 
 I you are too lazy to read it all or you don't want to run it under Docker, I've summarized the steps below.
 ###Installing Spotify-Connect-Web
-    pi@raspberrypi# cd ~
-    pi@raspberrypi# wget https://github.com/Fornoth/spotify-connect-web/releases/download/0.0.3-alpha/spotify-connect-web_0.0.3-alpha.tar.gz   
-    pi@raspberrypi# tar zxvf spotify-connect-web_0.0.3-alpha.tar.gz
+    # cd ~
+    # wget https://github.com/Fornoth/spotify-connect-web/releases/download/0.0.3-alpha/spotify-connect-web_0.0.3-alpha.tar.gz   
+    # tar zxvf spotify-connect-web_0.0.3-alpha.tar.gz
 
 You will find a new folder: ~/spotify-connect-web.
 
-Now you need to register as developer at Spotify (free!) to be able to register and download a '**spotify_appkey.key**'. This file should be placed in the ~/spotify-connect-web folder.
+Now you need to register as developer at Spotify (free!) to be able to [register](https://developer.spotify.com/) and [download](https://devaccount.spotify.com/my-account/keys/) a '**spotify_appkey.key**'. This file should be placed in the ~/spotify-connect-web folder.
 
 ### Running Spotify-Connect-Web
 Start a new SSH terminal and run something like this:
 
-    cd ~/spotify-connect-web
-    ./spotify-connect-web -n MAGICMIRROR -o plughw:CARD=ALSA,DEV=1 
+    # cd ~/spotify-connect-web
+    # ./spotify-connect-web -n MAGICMIRROR -o plughw:CARD=ALSA,DEV=1 
 
 -n is for the name Spotify Connect will broadcast itself as.
 -o Is for the output device. I'm using HDMI. It might or might not work for you. Go Google! ;-)
 
-When it runs successfully, you have to go to http://localhost:4000 on the RPi and to a first time login.
+(This step is probably not needed: When it runs successfully, you have to go to http://localhost:4000 on the RPi and do a first time login.)
 
 TODO: [Run this as a service](https://discourse.osmc.tv/t/howto-setup-a-spotify-connect-web-server-on-a-raspberry-pi-with-osmc/15818)
 #Installation of the module
 
 In your terminal, go to your MagicMirror's Module folder:
 
-    cd ~/MagicMirror/modules
+    # cd ~/MagicMirror/modules
 
 Clone this repository:
 
-    git clone https://github.com/CatoAntonsen/MMM-SpotifyConnectUI.git
+    # git clone https://github.com/CatoAntonsen/MMM-SpotifyConnectUI.git
 
 Configure the module in your config.js file.
 ## Using the module
@@ -49,17 +49,17 @@ To use this module, add it to the modules array in the `config/config.js` file:
     modules: [
     	{
     		module: 'MMM-SpotifyConnectUI',
-    		position: 'bottom_right',
+    		position: 'fullscreen_below',
     		config: {
     			// No further configuration needed unless you run another version of spotify-connect-web on another box.
-				// See MMM-SpotifyConnectUI.js for these settings.
+			// See MMM-SpotifyConnectUI.js for these settings.
     		}
     	}
     ]
 
 ## Configuration options
 
-The following properties can be configured:
+At the moment there is no need to change any of these properties - unless you run Spotify-Connect-Web on another box:
 
 <table width="100%">
 	<!-- why, markdown... -->
