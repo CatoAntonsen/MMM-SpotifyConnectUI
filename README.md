@@ -3,7 +3,7 @@ The 'MMM-SpotifyConnectUI' module is for displaying information from Spotify Con
 
 ![Screenshot of the module](images/Example.png "Screenshot of the module")
 
-Current version is 1.0.1. See [changelog](CHANGELOG.md "Version history") for version history.
+Current version is 1.0.2. See [changelog](CHANGELOG.md "Version history") for version history.
 
 ## Prerequisites
 You need to have Spotify-Connect-Web installed and a **Spotify Premium subscription** for this module to work.
