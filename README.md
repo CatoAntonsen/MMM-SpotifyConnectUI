@@ -115,7 +115,7 @@ At the moment there is no need to change any of these properties - unless you ru
 		
 	</tbody>
 </table>
-## Credits
+##Credits
 - Fornoth for making [spotify-connect-web](https://github.com/Fornoth/spotify-connect-web "Link to spotify-connect-web on GitHub") that this module relies on  
 - Spotify icon by Spotify
 - Pause Icon made by [Freepik](http://www.flaticon.com/authors/freepik) from www.flaticon.com 
