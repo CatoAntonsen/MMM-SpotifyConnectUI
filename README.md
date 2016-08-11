@@ -20,18 +20,59 @@ You will find a new folder: ~/spotify-connect-web.
 
 Now you need to register as developer at Spotify (free!) to be able to [register](https://developer.spotify.com/) and [download](https://devaccount.spotify.com/my-account/keys/) a '**spotify_appkey.key**'. This file should be placed in the ~/spotify-connect-web folder.
 
-### Running Spotify-Connect-Web
-Start a new SSH terminal and run something like this:
+### Running Spotify-Connect-Web as servie
+Start a new SSH terminal and create a new script-file:
 
-    # cd ~/spotify-connect-web
-    # ./spotify-connect-web -n MAGICMIRROR -o plughw:CARD=ALSA,DEV=1 
+    # nano ~/spotify-connect-web/spotifyconnect.sh
+
+The content of this file should be something along this:
+
+    #!/bin/bash
+    cd /home/pi/spotify-connect-web
+    ./spotify-connect-web -n MAGICMIRROR -o plughw:CARD=ALSA,DEV=1
 
 -n is for the name Spotify Connect will broadcast itself as.
 -o Is for the output device. I'm using HDMI. It might or might not work for you. Go Google! ;-)
 
-(This step is probably not needed: When it runs successfully, you have to go to http://localhost:4000 on the RPi and do a first time login.)
+Remember to set permissions:
 
-TODO: [Run this as a service](https://discourse.osmc.tv/t/howto-setup-a-spotify-connect-web-server-on-a-raspberry-pi-with-osmc/15818)
+    # chmod a+x ~/spotify-connect-web/spotifyconnect.sh
+
+Next you need to create the service-file, by running:
+
+    # sudo nano /etc/systemd/system/spotifyconnect.service
+
+The content of this file should be something along this:
+
+    [Unit]
+    Description=Spotify Connect
+    After=network-online.target
+    [Service]
+    Type=idle
+    User=pi
+    ExecStartPre=/bin/sleep 25
+    ExecStart=/home/pi/spotify-connect-web/spotifyconnect.sh
+    Restart=always
+    RestartSec=10
+    StartLimitInterval=30
+    StartLimitBurst=20
+    [Install]
+    WantedBy=multi-user.target
+
+Remember to set permissions:
+
+    # chmod a+x /etc/systemd/system/spotifyconnect.service
+
+Now it's time to enable and start the service:
+
+    # sudo systemctl daemon-reload
+    # sudo systemctl enable spotifyconnect.service
+    # sudo systemctl start scs.service
+
+If you need to see status, you can run:
+
+    # sudo systemctl status spotifyconnect.service
+
 #Installation of the module
 
 In your terminal, go to your MagicMirror's Module folder:
@@ -117,5 +158,6 @@ At the moment there is no need to change any of these properties - unless you ru
 </table>
 ## Credits
 - Fornoth for making [spotify-connect-web](https://github.com/Fornoth/spotify-connect-web "Link to spotify-connect-web on GitHub") that this module relies on  
+- Instructions for running spotify-web-connect as service: https://discourse.osmc.tv/t/howto-setup-a-spotify-connect-web-server-on-a-raspberry-pi-with-osmc/15818
 - Spotify icon by Spotify
 - Pause Icon made by [Freepik](http://www.flaticon.com/authors/freepik) from www.flaticon.com 
