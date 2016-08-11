@@ -11,7 +11,7 @@ You need to have Spotify-Connect-Web installed and a **Spotify Premium subscript
 Detailed instructions you find [here](https://github.com/Fornoth/spotify-connect-web/blob/0.0.3-alpha/README.md). Notice, he still refers to a 0.0.2-alpha version in the documentation, but there is a new 0.0.3-version out that I've been using.
 
 I you are too lazy to read it all or you don't want to run it under Docker, I've summarized the steps below.
-###Installing Spotify-Connect-Web
+### Installing Spotify-Connect-Web
     # cd ~
     # wget https://github.com/Fornoth/spotify-connect-web/releases/download/0.0.3-alpha/spotify-connect-web_0.0.3-alpha.tar.gz   
     # tar zxvf spotify-connect-web_0.0.3-alpha.tar.gz
@@ -93,7 +93,7 @@ To use this module, add it to the modules array in the `config/config.js` file:
     		position: 'fullscreen_below',
     		config: {
     			// No further configuration needed unless you run another version of spotify-connect-web on another box.
-			// See MMM-SpotifyConnectUI.js for these settings.
+				// See MMM-SpotifyConnectUI.js for these settings.
     		}
     	}
     ]
@@ -103,7 +103,6 @@ To use this module, add it to the modules array in the `config/config.js` file:
 At the moment there is no need to change any of these properties - unless you run Spotify-Connect-Web on another box:
 
 <table width="100%">
-	<!-- why, markdown... -->
 	<thead>
 		<tr>
 			<th>Option</th>
@@ -153,10 +152,10 @@ At the moment there is no need to change any of these properties - unless you ru
 				<br><b>Default value:</b> <code>'/api/info/image_url/'</code>
 			</td>
 		</tr>
-		
 	</tbody>
 </table>
-##Credits
+
+## Credits
 - Fornoth for making [spotify-connect-web](https://github.com/Fornoth/spotify-connect-web "Link to spotify-connect-web on GitHub") that this module relies on  
 - Instructions for running spotify-web-connect as service: https://discourse.osmc.tv/t/howto-setup-a-spotify-connect-web-server-on-a-raspberry-pi-with-osmc/15818
 - Spotify icon by Spotify

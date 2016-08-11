@@ -1,5 +1,10 @@
 #MMM-SpotifyConnectUI Change Log
 
+## [1.0.1] - 2016-08-11
+
+###Fixed
+- Fixed styling issues
+
 ## [1.0.0] - 2016-08-07
 
 ###Added

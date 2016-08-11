@@ -31,11 +31,11 @@ Module.register("MMM-SpotifyConnectUI",{
 		wrapper.className = "spotifyWrapper small"; // align-right thin bright
 
 		if (this.spotifyData != null) {
-			if (this.spotifyData.status.active) {
-				// Image wrapper
-				var imgWrapper = document.createElement("div");
-				imgWrapper.className = "spotifyImageWrapper";
+			// Image wrapper
+			var imgWrapper = document.createElement("div");
+			imgWrapper.className = "spotifyImageWrapper";
 
+			if (this.spotifyData.status.active) {
 				// Cover image
 				var coverImg = document.createElement("img");
 				coverImg.setAttribute("src", this.spotifyData.meta.cover_uri);
@@ -85,8 +85,9 @@ Module.register("MMM-SpotifyConnectUI",{
 				message.appendChild(remoteName);
 
 				// Add elements
-				wrapper.appendChild(connectImg);
-				wrapper.appendChild(message);
+				imgWrapper.appendChild(connectImg);
+				imgWrapper.appendChild(message);
+				wrapper.appendChild(imgWrapper);
 			}
 		} 
 		

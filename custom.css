@@ -1,7 +1,7 @@
 /*.MMM-SpotifyConnectUI { */
 .spotifyWrapper {
 	position: absolute;
-	width: 160px;
+	width: 20%;
 	bottom: 0;
 	left: 0;
 	margin-left: 60px;
@@ -14,7 +14,6 @@
 }
 
 .spotifyImageWrapper {
-  height: 160px;
   width: 160px;
   position: relative;
 }
