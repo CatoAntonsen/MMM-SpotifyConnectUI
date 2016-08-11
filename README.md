@@ -67,7 +67,7 @@ Now it's time to enable and start the service:
 
     # sudo systemctl daemon-reload
     # sudo systemctl enable spotifyconnect.service
-    # sudo systemctl start scs.service
+    # sudo systemctl start spotifyconnect.service
 
 If you need to see status, you can run:
 
