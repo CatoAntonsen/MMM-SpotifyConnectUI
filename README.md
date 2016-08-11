@@ -20,7 +20,7 @@ You will find a new folder: ~/spotify-connect-web.
 
 Now you need to register as developer at Spotify (free!) to be able to [register](https://developer.spotify.com/) and [download](https://devaccount.spotify.com/my-account/keys/) a '**spotify_appkey.key**'. This file should be placed in the ~/spotify-connect-web folder.
 
-### Running Spotify-Connect-Web as servie
+### Running Spotify-Connect-Web as service
 Start a new SSH terminal and create a new script-file:
 
     # nano ~/spotify-connect-web/spotifyconnect.sh
