@@ -36,7 +36,7 @@ The content of this file should be something along this:
 
 Remember to set permissions:
 
-    # chmod a+x ~/spotify-connect-web/spotifyconnect.sh
+    # sudo chmod a+x ~/spotify-connect-web/spotifyconnect.sh
 
 Next you need to create the service-file, by running:
 
@@ -61,7 +61,7 @@ The content of this file should be something along this:
 
 Remember to set permissions:
 
-    # chmod a+x /etc/systemd/system/spotifyconnect.service
+    # sudo chmod a+x /etc/systemd/system/spotifyconnect.service
 
 Now it's time to enable and start the service:
 
