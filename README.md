@@ -1,9 +1,5 @@
 # MagicMirror Module: MMM-SpotifyConnectUI
 
-## Status: DEPRICATED (?) 
-
-It seems that Spotify has stopped giving out keys. Without a key, then this module is of no use to you. If you have any information on this, please let me know!
-
 The 'MMM-SpotifyConnectUI' module is for displaying information from Spotify Connect (running on the RPi) via [spotify-connect-web](https://github.com/Fornoth/spotify-connect-web) (prerequisite which have to be installed seperately). The module provides no interaction other than showing if connected, what song is playing or if paused. You have to start and interact using Spotify on PC or mobile.
 
 ![Screenshot of the module](images/Example.png "Screenshot of the module")
@@ -11,9 +7,12 @@ The 'MMM-SpotifyConnectUI' module is for displaying information from Spotify Con
 Current version is 1.0.2. See [changelog](CHANGELOG.md "Version history") for version history.
 
 ## Prerequisites
-You need to have Spotify-Connect-Web installed and a **Spotify Premium subscription** for this module to work.
+You need to have Spotify-Connect-Web installed, a **Spotify Premium subscription** and a Spotify Connect API-key for this module to work.
 
-Detailed instructions you find [here](https://github.com/Fornoth/spotify-connect-web/blob/0.0.3-alpha/README.md). Notice, he still refers to a 0.0.2-alpha version in the documentation, but there is a new 0.0.3-version out that I've been using.
+Note:
+It seems that Spotify changed how they give out keys. You have fill out out an [application](https://developer.spotify.com/technologies/libspotify/application-keys/) and tell it's for private use. More info at Spotify Connect Web issue [#104](https://github.com/Fornoth/spotify-connect-web/issues/104). 
+
+Detailed instructions you find [here](https://github.com/Fornoth/spotify-connect-web/blob/0.0.3-alpha/README.md).
 
 I you are too lazy to read it all or you don't want to run it under Docker, I've summarized the steps below.
 ### Installing Spotify-Connect-Web
@@ -23,7 +22,7 @@ I you are too lazy to read it all or you don't want to run it under Docker, I've
 
 You will find a new folder: ~/spotify-connect-web.
 
-Now you need to register as developer at Spotify (free!) to be able to [register](https://developer.spotify.com/) and [download](https://devaccount.spotify.com/my-account/keys/) a '**spotify_appkey.key**'. This file should be placed in the ~/spotify-connect-web folder.
+Now you need to register as developer at Spotify (free!) to be able to [register](https://developer.spotify.com/) and [download](https://developer.spotify.com/technologies/libspotify/application-keys) a '**spotify_appkey.key**'. This file should be placed in the ~/spotify-connect-web folder.
 
 ### Running Spotify-Connect-Web as service
 Start a new SSH terminal and create a new script-file:
